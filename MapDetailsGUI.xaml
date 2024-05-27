@@ -1,0 +1,69 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WebForge GUI" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Page Title:" VerticalAlignment="Center"/>
+            <TextBox Name="PageTitleTextBox" Width="200" Margin="5"/>
+            <Label Content="Background Color:" VerticalAlignment="Center"/>
+            <ComboBox Name="BackgroundColorComboBox" Width="150" Margin="5" MaxDropDownHeight="200" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding}" Margin="2"/>
+                            <TextBlock Text="{Binding Path=Tag}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <!-- Add color options including Default -->
+                <ComboBoxItem Content="Default" Background="#0F0F0F" Foreground="White" Tag="Default"/>
+                <ComboBoxItem Content="Dark Gray" Background="#2E2E2E" Foreground="White" Tag="Dark Gray"/>
+                <ComboBoxItem Content="Slate Gray" Background="#708090" Foreground="White" Tag="Slate Gray"/>
+                <ComboBoxItem Content="Dim Gray" Background="#696969" Foreground="White" Tag="Dim Gray"/>
+                <ComboBoxItem Content="Cadet Blue" Background="#5F9EA0" Foreground="White" Tag="Cadet Blue"/>
+                <ComboBoxItem Content="Dark Olive Green" Background="#556B2F" Foreground="White" Tag="Dark Olive Green"/>
+                <ComboBoxItem Content="Dark Slate Blue" Background="#483D8B" Foreground="White" Tag="Dark Slate Blue"/>
+                <ComboBoxItem Content="Dark Slate Gray" Background="#2F4F4F" Foreground="White" Tag="Dark Slate Gray"/>
+                <ComboBoxItem Content="Steel Blue" Background="#4682B4" Foreground="White" Tag="Steel Blue"/>
+                <ComboBoxItem Content="Rosy Brown" Background="#BC8F8F" Foreground="White" Tag="Rosy Brown"/>
+                <ComboBoxItem Content="Saddle Brown" Background="#8B4513" Foreground="White" Tag="Saddle Brown"/>
+                <ComboBoxItem Content="Dark Cyan" Background="#008B8B" Foreground="White" Tag="Dark Cyan"/>
+                <ComboBoxItem Content="Dark Turquoise" Background="#00CED1" Foreground="White" Tag="Dark Turquoise"/>
+                <ComboBoxItem Content="Sea Green" Background="#2E8B57" Foreground="White" Tag="Sea Green"/>
+                <ComboBoxItem Content="Dark Red" Background="#8B0000" Foreground="White" Tag="Dark Red"/>
+                <ComboBoxItem Content="Maroon" Background="#800000" Foreground="White" Tag="Maroon"/>
+            </ComboBox>
+            <Button Name="ShowInputButton" Content="Add Halo Waypoint Links" Width="200" Margin="5"/>
+        </StackPanel>
+        <DataGrid Name="MapDetailsDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Detail 1" Binding="{Binding Detail1, Mode=TwoWay}" Width="*"/>
+                <DataGridTextColumn Header="Detail 2" Binding="{Binding Detail2, Mode=TwoWay}" Width="*"/>
+                <DataGridTextColumn Header="Detail 3" Binding="{Binding Detail3, Mode=TwoWay}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Personal Link:" VerticalAlignment="Center"/>
+            <TextBox Name="PersonalLinkTextBox" Width="200" Margin="5"/>
+            <Label Content="Link Text:" VerticalAlignment="Center"/>
+            <TextBox Name="LinkTextTextBox" Width="200" Margin="5"/>
+        </StackPanel>
+        <Button Name="GenerateHtmlButton" Content="Generate HTML" Grid.Row="3" Width="150" Height="30" HorizontalAlignment="Center" Margin="10"/>
+    </Grid>
+</Window>
